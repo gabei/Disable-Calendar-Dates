@@ -7,16 +7,20 @@
 const nextMonthButtons = document.querySelectorAll('.flatpickr-next-month');
 nextMonthButton.addEventListener('click', disableSundays);
 
-const disableSundays = () => {
+const findSundays = () => {
   let calendarDates = document.querySelectorAll('.flatpickr-day ');
 
   calendarDates.forEach((day) => { 
     let date = new Date(day.getAttribute("aria-label"));
     let dayOfWeek = date.getUTCDay();
     if(dayOfWeek === 0 ){
-      console.log(date);
+      disableSunday(day);
     }
   };
+}
+
+const disableSunday = (days) => {
+  console.log(days);
 }
 
 /**********************/
