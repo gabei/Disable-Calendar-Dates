@@ -26,4 +26,4 @@ const disableSunday = (days) => {
 /**********************/
 /* RUN ONCE INITIALLY */
 /**********************/
-disableSundays();
+findSundays();
