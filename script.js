@@ -5,14 +5,18 @@
    in order to run this check every time someone changes months! */
 const months = document.querySelector('.flatpickr-months');
 
-months.addEventListener('click', function (e) {
-  if (
-    e.target.className === 'flatpickr-next-month' ||
-    e.target.className === 'flatpickr-prev-month'
-  ) {
-    findSundays();
-  }
-});
+months.addEventListener(
+  'click',
+  function (e) {
+    if (
+      e.target.className === 'flatpickr-next-month' ||
+      e.target.className === 'flatpickr-prev-month'
+    ) {
+      findSundays();
+    }
+  },
+  true
+);
 
 const findSundays = () => {
   let calendarDates = document.querySelectorAll('.flatpickr-day ');
