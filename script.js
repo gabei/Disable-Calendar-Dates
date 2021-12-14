@@ -3,8 +3,16 @@
 
 /* will need to add an event listener to the arrow buttons on the calendar page
    in order to run this check every time someone changes months! */
-const nextMonthButtons = document.querySelectorAll('.flatpickr-next-month');
-nextMonthButton.addEventListener('click', disableSundays);
+const months = document.querySelector('.flatpickr-months');
+
+months.addEventListener('click', function (e) {
+  if (
+    e.target.className === 'flatpickr-next-month' ||
+    e.target.className === 'flatpickr-prev-month'
+  ) {
+    findSundays();
+  }
+});
 
 const findSundays = () => {
   let calendarDates = document.querySelectorAll('.flatpickr-day ');
