@@ -10,4 +10,5 @@ Since the calendar is updated each time a user moves to a new month, an event li
 The disableSundays() function can be updated to apply premade CSS classes if it seems more prudent to do so.
 `{ background: lightgray, pointer-events: none }`
 
-There are SVG arrows inside the next/previous months buttons that interfere with the event listeners. They have had their style updated in the main CSS file under 'Divi > Theme Options'. ` `{pointer-events: none}```
+There are SVG arrows inside the next/previous months buttons that interfere with the event listeners. They have had their style updated in the main CSS file under 'Divi > Theme Options':
+`{pointer-events: none}` on line 238

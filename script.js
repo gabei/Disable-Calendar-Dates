@@ -47,7 +47,7 @@ const findSundays = () => {
 /* Disable the buttons phyiscally and visually 
 _______________________________________________________________*/
 const disableSunday = (day) => {
-  console.log(day);
+  if (!day) return;
   day.style.backgroundColor = 'lightgray';
   day.style['pointer-events'] = 'none';
 };
