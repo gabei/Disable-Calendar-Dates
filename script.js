@@ -19,7 +19,7 @@
 /* Setup months buttons and add event listeners
    to catch newly rendered dates
 _______________________________________________________________*/
-const months = document.querySelector('.flatpickr-month');
+const month = document.querySelector('.flatpickr-month');
 
 month.addEventListener('click', function (e) {
   if (
