@@ -1,13 +1,12 @@
-// add CSS classes to wordpress to disable these buttons, or add them in cod ehere
-// preferably the former
+// add CSS classes to wordpress to disable these buttons, or add them in code here
+// ---- preferably the former
+// background: lightgray, pointer-events: none
 
 // POINTER EVENTS ON THE SVG MUST BE SET TO NONE IN ORDER TO NOT
 // INTERACT WITH THE EVENT LISTENER
 
-// will need to add an event listener to the arrow buttons on the calendar page
-// in order to run this check every time someone changes months! */
-
 /* Setup months buttons and add event listeners
+   to catch newly rendered dates
 _______________________________________________________________*/
 const months = document.querySelector('.flatpickr-months');
 
@@ -37,8 +36,10 @@ const findSundays = () => {
 
 /* Disable the buttons phyiscally and visually 
 _______________________________________________________________*/
-const disableSunday = (days) => {
-  console.log(days);
+const disableSunday = (day) => {
+  console.log(day);
+  day.style.backgroundColor = 'lightgray';
+  day.style['pointer-events'] = 'none';
 };
 
 /**********************/
