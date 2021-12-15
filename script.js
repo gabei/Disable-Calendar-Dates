@@ -16,43 +16,47 @@
    CSS file under 'Divi > Theme Options'. {pointer-events: none}
 */
 
-/* Setup months buttons and add event listeners
+/* Wait for WordPress to load DOM
+_______________________________________________________________*/
+document.addEventListener('DOMcontentLoaded', () => {
+  /* Setup months buttons and add event listeners
    to catch newly rendered dates
 _______________________________________________________________*/
-const months = document.querySelector('.flatpickr-months');
+  const months = document.querySelector('.flatpickr-months');
 
-months.addEventListener('click', function (e) {
-  if (
-    e.target.className === 'flatpickr-next-month' ||
-    e.target.className === 'flatpickr-prev-month'
-  ) {
-    findSundays();
-  }
-});
-
-/* Locate sundays ( basically: day of week = 0 out of 0-6) )
-_______________________________________________________________*/
-const findSundays = () => {
-  let calendarDates = document.querySelectorAll('.flatpickr-day ');
-
-  calendarDates.forEach((day) => {
-    let date = new Date(day.getAttribute('aria-label'));
-    let dayOfWeek = date.getUTCDay();
-    if (dayOfWeek === 0) {
-      disableSunday(day);
+  months.addEventListener('click', function (e) {
+    if (
+      e.target.className === 'flatpickr-next-month' ||
+      e.target.className === 'flatpickr-prev-month'
+    ) {
+      findSundays();
     }
   });
-};
 
-/* Disable the buttons phyiscally and visually 
+  /* Locate sundays ( basically: day of week = 0 out of 0-6) )
 _______________________________________________________________*/
-const disableSunday = (day) => {
-  if (!day) return;
-  day.style.backgroundColor = 'lightgray';
-  day.style['pointer-events'] = 'none';
-};
+  const findSundays = () => {
+    let calendarDates = document.querySelectorAll('.flatpickr-day ');
 
-/**********************/
-/* RUN ONCE INITIALLY */
-/**********************/
-findSundays();
+    calendarDates.forEach((day) => {
+      let date = new Date(day.getAttribute('aria-label'));
+      let dayOfWeek = date.getUTCDay();
+      if (dayOfWeek === 0) {
+        disableSunday(day);
+      }
+    });
+  };
+
+  /* Disable the buttons phyiscally and visually 
+_______________________________________________________________*/
+  const disableSunday = (day) => {
+    if (!day) return;
+    day.style.backgroundColor = 'lightgray';
+    day.style['pointer-events'] = 'none';
+  };
+
+  /**********************/
+  /* RUN ONCE INITIALLY */
+  /**********************/
+  findSundays();
+});
