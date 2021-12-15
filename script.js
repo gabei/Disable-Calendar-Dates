@@ -16,47 +16,43 @@
    CSS file under 'Divi > Theme Options'. {pointer-events: none}
 */
 
-/* Wait for WordPress to load DOM
-_______________________________________________________________*/
-document.addEventListener('DOMcontentLoaded', () => {
-  /* Setup months buttons and add event listeners
+/* Setup months buttons and add event listeners
    to catch newly rendered dates
 _______________________________________________________________*/
-  const months = document.querySelector('.flatpickr-months');
+const months = document.querySelector('.flatpickr-months');
 
-  months.addEventListener('click', function (e) {
-    if (
-      e.target.className === 'flatpickr-next-month' ||
-      e.target.className === 'flatpickr-prev-month'
-    ) {
-      findSundays();
+months.addEventListener('click', function (e) {
+  if (
+    e.target.className === 'flatpickr-next-month' ||
+    e.target.className === 'flatpickr-prev-month'
+  ) {
+    findSundays();
+  }
+});
+
+/* Locate sundays ( basically: day of week = 0 out of 0-6) )
+_______________________________________________________________*/
+const findSundays = () => {
+  let calendarDates = document.querySelectorAll('.flatpickr-day ');
+
+  calendarDates.forEach((day) => {
+    let date = new Date(day.getAttribute('aria-label'));
+    let dayOfWeek = date.getUTCDay();
+    if (dayOfWeek === 0) {
+      disableSunday(day);
     }
   });
+};
 
-  /* Locate sundays ( basically: day of week = 0 out of 0-6) )
+/* Disable the buttons phyiscally and visually 
 _______________________________________________________________*/
-  const findSundays = () => {
-    let calendarDates = document.querySelectorAll('.flatpickr-day ');
+const disableSunday = (day) => {
+  if (!day) return;
+  day.style.backgroundColor = 'lightgray';
+  day.style['pointer-events'] = 'none';
+};
 
-    calendarDates.forEach((day) => {
-      let date = new Date(day.getAttribute('aria-label'));
-      let dayOfWeek = date.getUTCDay();
-      if (dayOfWeek === 0) {
-        disableSunday(day);
-      }
-    });
-  };
-
-  /* Disable the buttons phyiscally and visually 
-_______________________________________________________________*/
-  const disableSunday = (day) => {
-    if (!day) return;
-    day.style.backgroundColor = 'lightgray';
-    day.style['pointer-events'] = 'none';
-  };
-
-  /**********************/
-  /* RUN ONCE INITIALLY */
-  /**********************/
-  findSundays();
-});
+/**********************/
+/* RUN ONCE INITIALLY */
+/**********************/
+findSundays();
